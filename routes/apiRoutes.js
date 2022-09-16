@@ -3,20 +3,20 @@ const store = require("../db/store");
 
 router.get('/notes', (req, res) => {
       store.getNotes()
-      .then((notes) => res.json(notes))
+      .then((notes) => res.json(notes));
   })
-  
-  //post route to add the notes
-  router.post('/notes', (req, res) => {
-      store.addNote(req.body)
-      .then((note) => (res.json(note)))
+
+router.post('/notes', (req, res) => {
+      store.addNote(req.body);
+      res.json(req.body);
   })
-  
-  //delete route to delete notes
-  
-  router.delete("/:title", (req, res) => {
-      store.deleteNotes(req.params.title)
-      res.json(notes)
-  })
+
+// uncomment once finished in store
+
+// router.delete("/notes/:title", (req, res) => {
+//   store.deleteNote(req.params.title);
+//   res.json();
+
+// });
 
 module.exports = router;
