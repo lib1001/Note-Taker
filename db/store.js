@@ -33,5 +33,20 @@ class Store {
     });
   }
 }
+deleteNote(id) {
 
+    this.getNotes().then((notes) => {
+      for (let i = 0; i < notes.length; i++) {
+        if (id === notes[i].id) {
+          // If we found a matching id, remove it from the database
+          notes.splice(i, 1)
+          return notes;
+        }
+      }
+      // After removing the note from the array object, overwrite db.json with the updated data.
+    }).then((updatedDatabase) => {
+      this.write(updatedDatabase);
+    });
+    return;
+  }
 module.exports = new Store();
