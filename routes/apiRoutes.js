@@ -7,16 +7,16 @@ router.get('/notes', (req, res) => {
   })
 
 router.post('/notes', (req, res) => {
-      store.addNote(req.body);
+      store.addNotes(req.body);
       res.json(req.body);
   })
 
 // uncomment once finished in store
 
-// router.delete("/notes/:title", (req, res) => {
-//   store.deleteNote(req.params.title);
-//   res.json();
+router.delete("/notes/:title", (req, res) => {
+  store.deleteNote(req.params.title);
+  res.json();
 
-// });
+});
 
 module.exports = router;

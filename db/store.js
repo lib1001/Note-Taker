@@ -21,15 +21,16 @@ class Store {
     });
   }
 
-  addNotes() {
+  addNotes(note) {
     const { title, text } = note;
-    //error not needed because of event handler for save button, but would include otherwise
-    // if (!title || !text) {
-    //     errorState.note = 'Title and notes cannot be blank!'
-    // }
+    if (!title || !text) {
+      errorState.note = "Title and notes cannot be blank!";
+    }
     const userNote = { title, text, id: uuidv4() };
-    let newNotes = [...notes, userNote];
-    return newNotes;
+    this.getNotes().then((notes) => {
+      notes.push(userNote);
+      return this.write(notes);
+    });
   }
 }
 
