@@ -1,3 +1,6 @@
+//I wanted to make a note that I received help from the teaching staff
+
+
 const express = require('express');
 const htmlRoutes = require('./routes/htmlRoutes');
 const apiRoutes = require('./routes/apiRoutes');
