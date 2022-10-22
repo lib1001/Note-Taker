@@ -30,6 +30,9 @@ Express
 
 When the user opens the deployed application, they can click on the Get Started button, and they will be taken to the notes page. Once the user enters a title and a note (both are required), the user can press the save button in the upper right corner of the page. The note will then be added to the list on the left. The user can click on a specific note to view it. The viewer is also able to delete notes by clicking the trash button.
 
+The user can view the note taker [here](https://lb-express-note-taker.herokuapp.com/) on heroku: https://lb-express-note-taker.herokuapp.com/
+
+
 ## License:
 
 MIT License
