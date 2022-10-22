@@ -1,22 +1,39 @@
 const router = require("express").Router();
-const store = require("../db/store");
+const notes = require('../db/db.json');
+const fs = require('fs');
 
+// 1. get route to get all notes from DB
 router.get('/notes', (req, res) => {
-      store.getNotes()
-      .then((notes) => res.json(notes));
-  })
+    res.json(notes);
+    // res.json returns as a json obj coming from the db file
+})
 
+// 2. post route to add the notes
 router.post('/notes', (req, res) => {
-      store.addNotes(req.body);
-      res.json(req.body);
-  })
+    req.body.id = Math.floor(Math.random() * 10000);
+    notes.push(req.body);
+    fs.writeFile('./db/db.json', JSON.stringify(notes), (err) => {
+        if (err) {
+            throw err;
+        }
+    });
+    res.json(notes);
+})
 
-// uncomment once finished in store
+// 3. delete route to delete my notes
+router.delete('/notes/:id', (req, res) => {
+    for (let i = 0; i < notes.length; i++) {
+        if (req.params.id == notes[i].id) {
+            notes.splice(i, 1)
+        }
+    }
+    fs.writeFile('./db/db.json', JSON.stringify(notes), (err) => {
+        if (err) {
+            throw err;
+        }
+    });
+    res.json(notes);
+})
 
-router.delete("/notes/:title", (req, res) => {
-  store.deleteNote(req.params.title);
-  res.json();
-
-});
-
+// export my module
 module.exports = router;
